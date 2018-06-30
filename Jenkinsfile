@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        Write-Host "Hello World!"
+        echo "Hello World!"
       }
     }
   }
