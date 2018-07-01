@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        rm -recurse -force *
+        "rm -recurse -force ."
       }
     }
   }
