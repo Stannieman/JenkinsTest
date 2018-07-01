@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        mkdir "testdir"
+        powershell "mkdir testdir"
       }
     }
   }
