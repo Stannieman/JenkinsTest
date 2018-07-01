@@ -6,7 +6,7 @@ pipeline {
     stage('Build') {
       steps {
         powershell "mkdir testdir"
-        deleteDir()
+        cleanWS()
       }
     }
   }
