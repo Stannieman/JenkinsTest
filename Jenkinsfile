@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo "TestEcho1"
+        rm -recurse -force .
       }
     }
   }
