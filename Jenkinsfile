@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label 'MSBuild\ 15.7'
+    label 'Git'
   }
   stages {
     stage('Build') {
