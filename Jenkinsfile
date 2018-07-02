@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-		powershell 'Invoke-Expression "$env:CAPABILITY_MSBUILD_15.7 /t:Build /p:Configuration=Release"'
+		powershell 'Invoke-Expression "& ${env:CAPABILITY_MSBUILD_15.7} /t:Build /p:Configuration=Release"'
       }
     }
 	stage('Test') {
@@ -15,7 +15,7 @@ pipeline {
 	}
 	stage('Pack') {
 		steps {
-			powershell 'Invoke-Expression "$env:CAPABILITY_MSBUILD_15.7 /t:pack /p:Configuration=Release"'
+			powershell 'Invoke-Expression "& ${env:CAPABILITY_MSBUILD_15.7} /t:pack /p:Configuration=Release"'
 		}
 	}
 	stage('Publish') {
