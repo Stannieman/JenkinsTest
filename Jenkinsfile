@@ -5,7 +5,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-		powershell 'Invoke-Expression "& `"${env:EXECUTABLE_MSBUILD_15_7}`" /t:Build /p:Configuration=Release"'
+	      powershell 'Invoke-Expression "& `"${env:EXECUTABLE_MSBUILD_15_7}`" /m /t:restore /p:Configuration=Release"'
+		powershell 'Invoke-Expression "& `"${env:EXECUTABLE_MSBUILD_15_7}`" /m /t:build /p:Configuration=Release"'
       }
     }
 	stage('Test') {
@@ -15,7 +16,7 @@ pipeline {
 	}
 	stage('Pack') {
 		steps {
-			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_MSBUILD_15_7}`" /t:pack /p:Configuration=Release"'
+			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_MSBUILD_15_7}`" /m /t:pack /p:Configuration=Release"'
 		}
 	}
 	stage('Publish') {
