@@ -10,7 +10,7 @@ pipeline {
     }
 	stage('Test') {
 		steps {
-			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" test -c Release"'
+			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" vstest ((ls -Recurse *.UnitTests.dll | % FullName) -Match `"\\bin\\Release\\`""'
 		}
 	}
 	stage('Pack') {
