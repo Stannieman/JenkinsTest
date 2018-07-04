@@ -11,6 +11,7 @@ pipeline {
 	stage('Test') {
 		steps {
 			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" vstest ((ls -Recurse *.UnitTests.dll | % FullName) -Match `"\\\\bin\\\\Release\\\\`")"'
+			mstest testResultsFile:"**/*.trx", keepLongStdio: true
 		}
 	}
 	stage('Pack') {
