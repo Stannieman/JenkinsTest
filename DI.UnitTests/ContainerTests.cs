@@ -21,13 +21,13 @@ namespace Stannieman.DI.UnitTests
             var actual1 = target.GetSingleInstance(typeof(IType1));
             var actual2 = target.GetSingleInstance(typeof(IType1));
 
-            Assert.AreSame(actual1, actual2);
+            Assert.AreNotSame(actual1, actual2);
         }
 
         [TestMethod]
         public void GetSingleInstance_ReturnsSameInstanceWhenRegisteredAsSingleton()
         {
-            var target = new Container(new ContainerConfiguration());
+            var target = new Container(new ConainerConfiguration());
 
             target.RegisterSingleton(typeof(IType1), typeof(Type1));
 
