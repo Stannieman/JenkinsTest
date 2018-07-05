@@ -21,7 +21,7 @@ namespace Stannieman.DI.UnitTests
             var actual1 = target.GetSingleInstance(typeof(IType1));
             var actual2 = target.GetSingleInstance(typeof(IType1));
 
-            Assert.AreNotSame(actual1, actual2);
+            Assert.AreSame(actual1, actual2);
         }
 
         [TestMethod]
