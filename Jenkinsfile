@@ -6,7 +6,7 @@ pipeline {
 		booleanParam(
 			defaultValue: false,
 			name: 'PUBLISH',
-			description: 'TESTIf True then the artifacts will be pushed to NuGet.org')
+			description: 'If True then the artifacts will be pushed to NuGet.org')
 	}
   stages {
     stage('Build') {
