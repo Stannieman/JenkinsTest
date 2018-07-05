@@ -11,6 +11,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+	      powershell 'ls env:'
 	      powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" build -c Release"'
       }
     }
