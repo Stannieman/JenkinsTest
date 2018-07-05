@@ -11,7 +11,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-	      powershell 'ls env:'
+	      when {
+			  expression { params.PUBLISH && env.GIT_BRANCH.startsWith('origin/mast') }
+		  }
 	      powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" build -c Release"'
       }
     }
