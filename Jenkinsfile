@@ -3,8 +3,8 @@ pipeline {
     label 'Git'
   }
 	parameters {
-		choice(
-			choices: 'False\nTrue',
+		booleanParam(
+			defaultValue: false,
 			name: 'PUBLISH',
 			description: 'If True then the artifacts will be pushed to NuGet.org')
 	}
@@ -37,7 +37,7 @@ pipeline {
 	}
 	  stage('Publish') {
 		  when {
-			  expression { PUBLISH == 'True' }
+			  expression { params.PUBLISH && env.GIT_BRANCH == 'origin/master' }
 		  }
 		  steps {
 			  echo "Publishing!"
