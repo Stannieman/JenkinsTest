@@ -6,7 +6,7 @@ pipeline {
 		booleanParam(
 			defaultValue: false,
 			name: 'PUBLISH',
-			description: 'If True then the artifacts will be pushed to NuGet.org')
+			description: 'If true then the artifacts will be pushed to NuGet.org')
 	}
   stages {
     stage('Build') {
@@ -37,7 +37,7 @@ pipeline {
 	}
 	  stage('Publish') {
 		  when {
-			  expression { params.PUBLISH && env.GIT_BRANCH == 'origin/master' }
+			  expression { params.PUBLISH && env.GIT_BRANCH.startsWith('origin/mast') }
 		  }
 		  steps {
 			  echo "Publishing!"
