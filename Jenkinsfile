@@ -5,7 +5,8 @@ pipeline {
 	parameters {
 		choice(
 			choices: 'False\nTrue',
-			name: 'PUBLISH')
+			name: 'PUBLISH',
+			description: 'If True then the artifacts will be pushed to NuGet.org')
 	}
   stages {
     stage('Build') {
