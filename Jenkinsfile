@@ -28,5 +28,8 @@ pipeline {
 			echo "Publish"
 		}
 	}
+	  stage('Cleanup') {
+		  cleanWd()
+	  }
   }
 }
