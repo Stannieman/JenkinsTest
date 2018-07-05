@@ -10,9 +10,6 @@ pipeline {
 	}
   stages {
     stage('Build') {
-	    when {
-			  expression { params.PUBLISH && env.GIT_BRANCH.startsWith('origin/masterr') }
-		  }
       steps {
 	      
 	      powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" build -c Release"'
@@ -40,7 +37,7 @@ pipeline {
 	}
 	  stage('Publish') {
 		  when {
-			  expression { params.PUBLISH && env.GIT_BRANCH.startsWith('origin/mast') }
+			  expression { params.PUBLISH && env.GIT_BRANCH.startsWith('origin/release') }
 		  }
 		  steps {
 			  echo "Publishing!"
