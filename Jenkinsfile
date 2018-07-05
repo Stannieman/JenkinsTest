@@ -29,7 +29,10 @@ pipeline {
 		}
 	}
 	  stage('Cleanup') {
-		  cleanWd()
+		  steps {
+			  cleanWs()
+		  }
+		  
 	  }
   }
 }
