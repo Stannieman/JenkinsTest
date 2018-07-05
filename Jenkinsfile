@@ -10,7 +10,7 @@ pipeline {
     }
 	stage('Test') {
 		steps {
-			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" vstest --logger:trx ((ls -Recurse *.UnitTests.dll | % FullName) -Match `"\\\\bin\\\\Release\\\\`")"'
+			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" vstest --no-restore --no-build --logger:trx ((ls -Recurse *.UnitTests.dll | % FullName) -Match `"\\\\bin\\\\Release\\\\`")"'
 		}
 		post {
 			always {
@@ -20,12 +20,12 @@ pipeline {
 	}
 	stage('Pack') {
 		steps {
-			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" pack -c Release"'
+			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" pack -c Release --include-source --include-symbols --no-restore --no_build"'
 		}
 	}
 	stage('Publish') {
 		steps {
-			echo "Publish"
+			archiveArtifacts artifacts: '**/**/**/.nupkg', fingerprint: true
 		}
 	}
   }
