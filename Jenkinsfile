@@ -20,7 +20,7 @@ pipeline {
 	}
 	stage('Pack') {
 		steps {
-			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" pack -c Release --include-source --include-symbols --no-restore --no_build"'
+			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" pack -c Release --include-source --include-symbols --no-restore --no-build"'
 		}
 	}
 	stage('Publish') {
