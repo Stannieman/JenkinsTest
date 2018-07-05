@@ -3,10 +3,9 @@ pipeline {
     label 'Git'
   }
 	parameters {
-		choice {
-			choices: 'False\nTrue'
-			name: 'PUBLISH'
-		}
+		choice(
+			choices: 'False\nTrue',
+			name: 'PUBLISH')
 	}
   stages {
     stage('Build') {
