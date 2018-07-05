@@ -25,7 +25,7 @@ pipeline {
 	}
 	stage('Publish') {
 		steps {
-			archiveArtifacts artifacts: '**/**/**/.nupkg', fingerprint: true
+			archiveArtifacts artifacts: '**/**/**/*.nupkg', fingerprint: true
 		}
 	}
   }
