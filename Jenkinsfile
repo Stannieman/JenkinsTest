@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Build') {
 	    when {
-			  expression { params.PUBLISH && env.GIT_BRANCH.startsWith('origin/mast') }
+			  expression { params.PUBLISH && env.GIT_BRANCH.startsWith('origin/masterr') }
 		  }
       steps {
 	      
