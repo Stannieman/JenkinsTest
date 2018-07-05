@@ -3,7 +3,7 @@ pipeline {
     label 'Git'
   }
 	parameters {
-		choise {
+		choice {
 			choices: 'False\nTrue'
 			name: 'PUBLISH'
 		}
