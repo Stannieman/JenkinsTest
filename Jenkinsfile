@@ -28,11 +28,10 @@ pipeline {
 			echo "Publish"
 		}
 	}
-	  stage('Cleanup') {
-		  steps {
+	  post {
+		  cleanup {
 			  cleanWs()
 		  }
-		  
 	  }
   }
 }
