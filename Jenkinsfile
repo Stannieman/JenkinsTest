@@ -2,6 +2,12 @@ pipeline {
   agent {
     label 'Git'
   }
+	parameters {
+		choise {
+			choices: 'False\nTrue'
+			name: 'PUBLISH'
+		}
+	}
   stages {
     stage('Build') {
       steps {
@@ -23,11 +29,16 @@ pipeline {
 			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" pack -c Release --include-source --include-symbols --no-restore --no-build"'
 		}
 	}
-	stage('Publish') {
+	stage('Archive') {
 		steps {
 			archiveArtifacts artifacts: '**/**/**/*.nupkg', fingerprint: true
 		}
 	}
+	  stage('Publish') {
+		  steps {
+			  echo "Publishing!"
+		  }
+	  }
   }
 	  post {
 		  cleanup {
