@@ -27,7 +27,7 @@ namespace Stannieman.DI.UnitTests
         [TestMethod]
         public void GetSingleInstance_ReturnsSameInstanceWhenRegisteredAsSingleton()
         {
-            var target = new Container(new ConainerConfiguration());
+            var target = new Container(new ContainerConfiguration());
 
             target.RegisterSingleton(typeof(IType1), typeof(Type1));
 
