@@ -28,10 +28,10 @@ pipeline {
 			echo "Publish"
 		}
 	}
+  }
 	  post {
 		  cleanup {
 			  cleanWs()
 		  }
 	  }
-  }
 }
