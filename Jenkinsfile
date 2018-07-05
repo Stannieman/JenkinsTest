@@ -35,6 +35,9 @@ pipeline {
 		}
 	}
 	  stage('Publish') {
+		  when {
+			  expression { PUBLISH == 'True' }
+		  }
 		  steps {
 			  echo "Publishing!"
 		  }
