@@ -12,12 +12,12 @@ pipeline {
     stage('Build') {
       steps {
 	      
-	      powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" build -c Release"'
+	      bat 'pwsh.exe -Command Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" build -c Release"'
       }
     }
 	stage('Test') {
 		steps {
-			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" vstest --parallel --logger:trx ((ls -Recurse *.UnitTests.dll | % FullName) -Match `"\\\\bin\\\\Release\\\\`")"'
+			bat 'pwsh.exe Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" vstest --parallel --logger:trx ((ls -Recurse *.UnitTests.dll | % FullName) -Match `"\\\\bin\\\\Release\\\\`")"'
 		}
 		post {
 			always {
@@ -30,7 +30,7 @@ pipeline {
 			  expression { env.GIT_BRANCH == 'origin/develop' }
 		  }
 		steps {
-			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" pack -c Release --include-source --include-symbols --no-restore --no-build"'
+			bat 'pwsh.exe Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" pack -c Release --include-source --include-symbols --no-restore --no-build"'
 			archiveArtifacts artifacts: '**/**/**/*.nupkg', fingerprint: true
 		}
 	}
