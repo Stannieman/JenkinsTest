@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-	      bat 'pwsh.exe -Command \'Invoke-Expression "& `"ipconfig`""\''
+	      bat '"%EXECUTABLE_DOTNET_2_0%" build -C Release'
       }
     }
 	stage('Test') {
