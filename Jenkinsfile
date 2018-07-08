@@ -27,7 +27,7 @@ pipeline {
 	}
 	stage('Pack') {
 		when {
-			  expression { env.GIT_BRANCH == 'origin/develop') }
+			  expression { env.GIT_BRANCH == 'origin/develop' }
 		  }
 		steps {
 			powershell 'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" pack -c Release --include-source --include-symbols --no-restore --no-build"'
