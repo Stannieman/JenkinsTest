@@ -11,8 +11,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-	      bat 'pwsh.exe -Command "Write-Host Testdfsdfdsfs"'
-	      bat 'pwsh.exe -Command \'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_2_0}`" build -c Release"\''
+	      bat 'pwsh.exe -Command "& `"${env:EXECUTABLE_DOTNET_2_0}`" build -c Release"'
       }
     }
 	stage('Test') {
