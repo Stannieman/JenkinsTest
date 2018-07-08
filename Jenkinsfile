@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-	      bat 'pwsh.exe -Command Invoke-Expression "& `"ipconfig`""'
+	      bat 'pwsh.exe -Command \'Invoke-Expression "& `"ipconfig`""\''
       }
     }
 	stage('Test') {
