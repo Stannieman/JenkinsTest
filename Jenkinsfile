@@ -16,7 +16,7 @@ pipeline {
     }
 	stage('Test') {
 		steps {
-			bat 'pwsh.exe -Command \'Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_CORE_2_0}`" vstest --parallel --logger:trx ((ls -Recurse *.UnitTests.dll | % FullName) -Match `"\\\\bin\\\\Release\\\\`")"\''
+			bat 'pwsh.exe -Command Invoke-Expression "& `"${env:EXECUTABLE_DOTNET_CORE_2_0}`" vstest --parallel --logger:trx ((ls -Recurse *.UnitTests.dll | % FullName) -Match `"\\\\bin\\\\Release\\\\`")"'
 		}
 		post {
 			always {
