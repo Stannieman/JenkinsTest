@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-	      bat '"%EXECUTABLE_DOTNET_CORE_2_0%" build -C Release'
+	      bat '"%EXECUTABLE_DOTNET_CORE_2_0%" build -c Release'
       }
     }
 	stage('Test') {
