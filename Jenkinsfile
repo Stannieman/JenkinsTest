@@ -16,7 +16,7 @@ pipeline {
 	  }
 	  stage('Restore packages') {
 		  steps {
-			  bat '"%EXECUTABLE_DOTNET_CORE_2_0%" restore -c Release'
+			  bat '"%EXECUTABLE_DOTNET_CORE_2_0%" restore'
 		  }
 	  }
     stage('Build') {
