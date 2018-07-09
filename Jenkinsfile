@@ -9,9 +9,15 @@ pipeline {
 			description: 'If true then the artifacts will be pushed to NuGet.org')
 	}
   stages {
+	  stage('Set version') {
+		  bat 'pwsh.exe -File ./Scripts/UpdateVersion.ps1'
+	  }
+	  stage('Restore packages') {
+	      bat '"%EXECUTABLE_DOTNET_CORE_2_0%" restore -c Release'
+	  }
     stage('Build') {
       steps {
-	      bat '"%EXECUTABLE_DOTNET_CORE_2_0%" build -c Release'
+	      bat '"%EXECUTABLE_DOTNET_CORE_2_0%" build -c Release --no-restore'
       }
     }
 	stage('Test') {
@@ -44,7 +50,7 @@ pipeline {
   }
 	  post {
 		  cleanup {
-			  cleanWs()
+			  cleanWs-bla()
 		  }
 	  }
 }
