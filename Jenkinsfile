@@ -52,9 +52,9 @@ pipeline {
 		  }
 	  }
   }
-	  post {
+	  /*post {
 		  cleanup {
-			  
+			  cleanWs()
 		  }
-	  }
+	  }*/
 }
