@@ -54,7 +54,7 @@ pipeline {
   }
 	  post {
 		  cleanup {
-			  cleanWs-bla()
+			  
 		  }
 	  }
 }
