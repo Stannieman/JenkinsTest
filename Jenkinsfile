@@ -45,7 +45,7 @@ pipeline {
 	}
 	  stage('Publish') {
 		  when {
-			  expression { params.PUBLISH || (params.PUBLISH && env.GIT_BRANCH.startsWith('origin/release')) }
+			  expression { params.PUBLISH || env.GIT_BRANCH.startsWith('origin/release') }
 		  }
 		  steps {
 			  echo "Publishing!"
