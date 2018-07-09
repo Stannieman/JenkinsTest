@@ -39,7 +39,7 @@ pipeline {
 			  expression { params.PUBLISH || env.GIT_BRANCH == 'origin/develop' }
 		  }
 		steps {
-			bat '"%EXECUTABLE_DOTNET_CORE_2_0" pack -c Release --include-source --include-symbols --no-restore --no-build'
+			bat '"%EXECUTABLE_DOTNET_CORE_2_0%" pack -c Release --include-source --include-symbols --no-restore --no-build'
 			archiveArtifacts artifacts: '**/**/**/*.nupkg', fingerprint: true
 		}
 	}
