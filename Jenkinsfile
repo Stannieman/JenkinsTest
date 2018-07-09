@@ -16,11 +16,11 @@ pipeline {
     }
 	stage('Test') {
 		steps {
-			bat 'pwsh.exe -Command "& %EXECUTABLE_DOTNET_CORE_2_0% vstest ((Get-ChildItem -Recurse *.UnitTests.dll | Select-Object -ExpandProperty FullName) -Match \'\\\\bin\\\\Release\\\\\') --parallel --logger:trx"'
+			bat 'pwsh.exe -Command "& `"%EXECUTABLE_DOTNET_CORE_2_0%`" vstest ((Get-ChildItem -Recurse *.UnitTests.dll | Select-Object -ExpandProperty FullName) -Match \'\\\\bin\\\\Release\\\\\') --parallel --logger:trx"'
 		}
 		post {
 			always {
-				step([$class: 'MSTestPublisher', testResultsFile:"**/*.trx", failOnError: true, keepLongStdio: true])
+				step([$class: 'MSTestPublisher', testResultsFile: '**/*.trx', failOnError: true, keepLongStdio: true])
 			}
 		}
 	}
@@ -29,7 +29,7 @@ pipeline {
 			  expression { env.GIT_BRANCH == 'origin/develop' }
 		  }
 		steps {
-			bat '"%EXECUTABLE_DOTNET_CORE_2_0}" pack -c Release --include-source --include-symbols --no-restore --no-build'
+			bat '"%EXECUTABLE_DOTNET_CORE_2_0" pack -c Release --include-source --include-symbols --no-restore --no-build'
 			archiveArtifacts artifacts: '**/**/**/*.nupkg', fingerprint: true
 		}
 	}
