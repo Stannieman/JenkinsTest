@@ -36,7 +36,7 @@ pipeline {
 	}
 	stage('Pack') {
 		when {
-			  expression { env.GIT_BRANCH == 'origin/develop' }
+			  expression { params.PUBLISH || env.GIT_BRANCH == 'origin/develop' }
 		  }
 		steps {
 			bat '"%EXECUTABLE_DOTNET_CORE_2_0" pack -c Release --include-source --include-symbols --no-restore --no-build'
@@ -45,7 +45,7 @@ pipeline {
 	}
 	  stage('Publish') {
 		  when {
-			  expression { params.PUBLISH && env.GIT_BRANCH.startsWith('origin/release') }
+			  expression { params.PUBLISH || (params.PUBLISH && env.GIT_BRANCH.startsWith('origin/release')) }
 		  }
 		  steps {
 			  echo "Publishing!"
