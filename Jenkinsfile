@@ -16,7 +16,7 @@ pipeline {
     }
 	stage('Test') {
 		steps {
-			bat 'pwsh.exe -Command "& %EXECUTABLE_DOTNET_CORE_2_0% vstest ((Get-ChildItem -Recurse *.UnitTests.dll | Select-Object FullName) -Match \'\\\\bin\\\\Release\\\\\') --parallel --logger:trx"'
+			bat 'pwsh.exe -Command "& %EXECUTABLE_DOTNET_CORE_2_0% vstest ((Get-ChildItem -Recurse *.UnitTests.dll | %% FullName) -Match \'\\\\bin\\\\Release\\\\\') --parallel --logger:trx"'
 		}
 		post {
 			always {
