@@ -10,10 +10,14 @@ pipeline {
 	}
   stages {
 	  stage('Set version') {
-		  bat 'pwsh.exe -File ./Scripts/UpdateVersion.ps1'
+		  steps {
+			  bat 'pwsh.exe -File ./Scripts/UpdateVersion.ps1'
+		  }
 	  }
 	  stage('Restore packages') {
-	      bat '"%EXECUTABLE_DOTNET_CORE_2_0%" restore -c Release'
+		  steps {
+			  bat '"%EXECUTABLE_DOTNET_CORE_2_0%" restore -c Release'
+		  }
 	  }
     stage('Build') {
       steps {
