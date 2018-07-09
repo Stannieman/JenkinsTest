@@ -1,5 +1,5 @@
-$versionInfo = Get-Content -Path ../VersionInfo.json -Encoding UTF8 | ConvertFrom-Json
-$projectFiles = Get-ChildItem -Path ../ -Recurse -Filter *.csproj
+$versionInfo = Get-Content -Path "$PSScriptRoot/../VersionInfo.json" -Encoding UTF8 | ConvertFrom-Json
+$projectFiles = Get-ChildItem -Path "$PSScriptRoot/../" -Recurse -Filter *.csproj
 
 $buildNumber = 0
 if ($env:BUILD_NUMBER) {
