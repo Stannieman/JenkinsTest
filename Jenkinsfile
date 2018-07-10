@@ -40,7 +40,7 @@ pipeline {
 		  }
 		steps {
 			bat '"%EXECUTABLE_DOTNET_CORE_2_0%" pack -c Release --include-source --include-symbols --no-restore --no-build'
-			archiveArtifacts artifacts: '**/**/**/*.nupkg', fingerprint: true
+			archiveArtifacts artifacts: '**/*.nupkg', fingerprint: true
 		}
 	}
 	  stage('Publish') {
@@ -48,7 +48,7 @@ pipeline {
 			  expression { params.PUBLISH || env.GIT_BRANCH.startsWith('origin/release') }
 		  }
 		  steps {
-			  echo "Publishing!"
+			  bat 'pwsh.exe -Command "& \'%EXECUTABLE_DOTNET_CORE_2_0%\' nuget push -s nuget.org -ss https://nuget.smbsrc.net -k %NUGET_API_KEY% ((Get-ChildItem -Recurse *.nupkg | Select-Object -ExpandProperty FullName) -Match \'\\\\bin\\\\Release\\\\\')"'
 		  }
 	  }
   }
