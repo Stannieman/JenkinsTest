@@ -48,7 +48,7 @@ pipeline {
 			  expression { params.PUBLISH || env.GIT_BRANCH.startsWith('origin/release') }
 		  }
 		  steps {
-			  bat 'pwsh.exe -Command "& \'%EXECUTABLE_DOTNET_CORE_2_0%\' nuget push -s nuget.org -ss https://nuget.smbsrc.net -k %NUGET_API_KEY% ((Get-ChildItem -Recurse *.nupkg | Select-Object -ExpandProperty FullName) -Match \'\\\\bin\\\\Release\\\\\')"'
+			  bat 'pwsh.exe -Command "& \'%EXECUTABLE_DOTNET_CORE_2_0%\' nuget push -s staging.nuget.org -ss https://nuget.smbsrc.net -k %NUGET_API_KEY% ((Get-ChildItem -Recurse *.nupkg | Select-Object -ExpandProperty FullName) -Match \'\\\\bin\\\\Release\\\\\')"'
 		  }
 	  }
   }
